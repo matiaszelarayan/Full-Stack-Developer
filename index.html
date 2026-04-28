@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Formulario – Datos Personales</title>
+  <link rel="stylesheet" href="index.css" />
+</head>
+<body>
+
+  <!--
+    ════════════════════════════════════════════════════════
+    CHECKBOX HACK – deben ir ANTES de .page-wrapper
+    para que el selector CSS  ~  (hermano siguiente) funcione.
+
+    Usamos type="checkbox" (no radio) porque necesitamos
+    poder marcar/desmarcar de forma independiente.
+    ════════════════════════════════════════════════════════
+  -->
+  <input type="checkbox" id="toggle-contraste" />
+  <input type="checkbox" id="toggle-normal"    />
+
+  <!-- ══ Contenedor principal ══ -->
+  <div class="page-wrapper">
+
+    <h1 class="page-title">Datos Personales</h1>
+
+    <div class="card">
+
+      <!--
+        ════════════════════════════════════════════════════
+        PASO 3 – Validaciones en HTML
+        Cada campo tiene sus atributos de validación:
+          · required        → campo obligatorio
+          · type="email"    → valida formato de email
+          · minlength       → longitud mínima de texto
+          · min / max       → rango válido para la fecha
+          · pattern         → expresión regular personalizada
+        ════════════════════════════════════════════════════
+      -->
+      <form id="formulario" action="#" method="post" novalidate>
+
+        <!-- ── Nombre ── -->
+        <div class="field-group">
+          <label for="nombre">Nombre</label>
+          <input
+            type="text"
+            id="nombre"
+            name="nombre"
+            placeholder="Ej: Matías"
+            required
+            minlength="2"
+            pattern="[A-Za-záéíóúÁÉÍÓÚüÜñÑ\s]+"
+            title="Solo letras y espacios, mínimo 2 caracteres"
+          />
+          <span class="error-msg">Ingresá tu nombre (solo letras, mínimo 2 caracteres).</span>
+        </div>
+
+        <!-- ── Apellido ── -->
+        <div class="field-group">
+          <label for="apellido">Apellido</label>
+          <input
+            type="text"
+            id="apellido"
+            name="apellido"
+            placeholder="Ej: Zelarayán"
+            required
+            minlength="2"
+            pattern="[A-Za-záéíóúÁÉÍÓÚüÜñÑ\s]+"
+            title="Solo letras y espacios, mínimo 2 caracteres"
+          />
+          <span class="error-msg">Ingresá tu apellido (solo letras, mínimo 2 caracteres).</span>
+        </div>
+
+        <!-- ── Email ── -->
+        <div class="field-group">
+          <label for="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="ejemplo@correo.com"
+            required
+            title="Ingresá un email válido: usuario@dominio.com"
+          />
+          <span class="error-msg">Ingresá un email válido (ej: usuario@dominio.com).</span>
+        </div>
+
+        <!-- ── Fecha de nacimiento ── -->
+        <div class="field-group">
+          <label for="fecha">Fecha de nacimiento</label>
+          <input
+            type="date"
+            id="fecha"
+            name="fecha"
+            required
+            min="1900-01-01"
+            max="2010-12-31"
+            title="Debe ser una fecha entre 1900 y 2010"
+          />
+          <span class="error-msg">Ingresá una fecha válida (entre 1900 y 2010).</span>
+        </div>
+
+        <!-- ── País de residencia ── -->
+        <div class="field-group">
+          <label for="pais">País de residencia</label>
+          <select id="pais" name="pais" required>
+            <option value="">— Seleccioná un país —</option>
+            <option value="argentina">Argentina</option>
+            <option value="bolivia">Bolivia</option>
+            <option value="brasil">Brasil</option>
+            <option value="chile">Chile</option>
+            <option value="colombia">Colombia</option>
+            <option value="ecuador">Ecuador</option>
+            <option value="mexico">México</option>
+            <option value="paraguay">Paraguay</option>
+            <option value="peru">Perú</option>
+            <option value="uruguay">Uruguay</option>
+            <option value="venezuela">Venezuela</option>
+            <option value="otro">Otro</option>
+          </select>
+          <span class="error-msg">Seleccioná tu país de residencia.</span>
+        </div>
+
+        <div class="divider"></div>
+
+        <!--
+          ════════════════════════════════════════════════════
+          PASO 4 – Botones con funciones claras
+          · Botón 1 (submit)   → valida y envía el formulario
+          · Label 2 (☀ Normal) → activa #toggle-normal   (tema claro)
+          · Label 3 (🌙 Contraste) → activa #toggle-contraste (tema oscuro)
+
+          Los labels apuntan a los checkboxes que están FUERA
+          del formulario (antes del .page-wrapper), por eso
+          el selector CSS ~ puede afectar a .page-wrapper.
+          ════════════════════════════════════════════════════
+        -->
+        <div class="btn-row">
+
+          <!-- Botón 1: Enviar -->
+          <button type="submit" class="btn-send">✔ Enviar</button>
+
+          <!-- Botón 2: Estilo Normal — activa el checkbox #toggle-normal -->
+          <label for="toggle-normal" class="btn-style btn-claro">☀ Estilo normal</label>
+
+          <!-- Botón 3: Alto Contraste — activa el checkbox #toggle-contraste -->
+          <label for="toggle-contraste" class="btn-style btn-oscuro">🌙 Alto contraste</label>
+
+        </div>
+
+      </form>
+    </div><!-- /.card -->
+
+    <p class="note">Formulario HTML y CSS · Sin JavaScript</p>
+
+  </div><!-- /.page-wrapper -->
+
+</body>
+</html>

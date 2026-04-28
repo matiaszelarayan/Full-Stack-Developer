@@ -1,0 +1,303 @@
+/* ════════════════════════════════════════════════════════════
+   index.css  –  Formulario de Datos Personales
+   Cubre: Paso 1 (base) · Paso 2 (alto contraste) · Paso 3 (validación) · Paso 4 (integración)
+   ════════════════════════════════════════════════════════════ */
+
+
+/* ──────────────────────────────────────────────────────────
+   PASO 1 – Variables del tema CLARO (predeterminado)
+   Todos los colores se definen acá como variables CSS.
+   Cambiar el tema = redefinir estas variables.
+────────────────────────────────────────────────────────── */
+:root {
+  --bg:             #f0f4f8;
+  --card-bg:        #ffffff;
+  --text:           #1a202c;
+  --label-color:    #2d3748;
+  --input-bg:       #ffffff;
+  --input-border:   #cbd5e0;
+  --input-focus:    #4299e1;
+  --btn-send-bg:    #3182ce;
+  --btn-send-txt:   #ffffff;
+  --btn-style-bg:   #edf2f7;
+  --btn-style-txt:  #2d3748;
+  --btn-style-border: #cbd5e0;
+  --error-color:    #e53e3e;
+  --shadow:         0 4px 24px rgba(0, 0, 0, 0.10);
+  --radius:         10px;
+  --font-size-base: 1rem;
+}
+
+
+/* ──────────────────────────────────────────────────────────
+   PASO 2 – Tema ALTO CONTRASTE
+   Se activa cuando el checkbox #toggle-contraste está marcado.
+   El selector "~" significa "hermano siguiente en el DOM".
+   Como los checkboxes están antes de .page-wrapper en el HTML,
+   podemos seleccionarlo con ~.
+────────────────────────────────────────────────────────── */
+#toggle-contraste:checked ~ .page-wrapper {
+  --bg:             #000000;
+  --card-bg:        #1a1a2e;
+  --text:           #f5f5f5;
+  --label-color:    #ffffff;
+  --input-bg:       #0f0f1a;
+  --input-border:   #ffcc00;
+  --input-focus:    #ffcc00;
+  --btn-send-bg:    #ffcc00;
+  --btn-send-txt:   #000000;
+  --btn-style-bg:   #222244;
+  --btn-style-txt:  #ffcc00;
+  --btn-style-border: #ffcc00;
+  --error-color:    #ff6b6b;
+  --shadow:         0 4px 32px rgba(0, 0, 0, 0.80);
+  --font-size-base: 1.1rem;   /* letra más grande para mejor legibilidad */
+}
+
+/* Cuando se activa #toggle-normal → volvemos al tema claro */
+#toggle-normal:checked ~ .page-wrapper {
+  --bg:             #f0f4f8;
+  --card-bg:        #ffffff;
+  --text:           #1a202c;
+  --label-color:    #2d3748;
+  --input-bg:       #ffffff;
+  --input-border:   #cbd5e0;
+  --input-focus:    #4299e1;
+  --btn-send-bg:    #3182ce;
+  --btn-send-txt:   #ffffff;
+  --btn-style-bg:   #edf2f7;
+  --btn-style-txt:  #2d3748;
+  --btn-style-border: #cbd5e0;
+  --error-color:    #e53e3e;
+  --shadow:         0 4px 24px rgba(0, 0, 0, 0.10);
+  --font-size-base: 1rem;
+}
+
+/* Ocultar los checkboxes del hack — son funcionales pero invisibles */
+#toggle-contraste,
+#toggle-normal {
+  display: none;
+}
+
+
+/* ──────────────────────────────────────────────────────────
+   RESET BÁSICO
+────────────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+
+/* ──────────────────────────────────────────────────────────
+   BODY & LAYOUT
+────────────────────────────────────────────────────────── */
+body {
+  font-family: Arial, sans-serif;
+  font-size: var(--font-size-base);
+  background-color: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 40px 16px 60px;
+  transition: background-color 0.4s, color 0.4s;
+}
+
+.page-wrapper {
+  width: 100%;
+  max-width: 560px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  /* La transición acá hace que todos los hijos animados se vean suaves */
+  transition: all 0.4s;
+}
+
+
+/* ──────────────────────────────────────────────────────────
+   TÍTULO
+────────────────────────────────────────────────────────── */
+.page-title {
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: var(--text);
+  text-align: center;
+  transition: color 0.4s;
+}
+
+
+/* ──────────────────────────────────────────────────────────
+   TARJETA (card)
+────────────────────────────────────────────────────────── */
+.card {
+  width: 100%;
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 36px 32px;
+  transition: background 0.4s, box-shadow 0.4s;
+}
+
+
+/* ──────────────────────────────────────────────────────────
+   CAMPOS DEL FORMULARIO
+────────────────────────────────────────────────────────── */
+.field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 1.4rem;
+}
+
+label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--label-color);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: color 0.4s;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="date"],
+select {
+  width: 100%;
+  padding: 10px 14px;
+  font-size: var(--font-size-base);
+  font-family: inherit;
+  background: var(--input-bg);
+  color: var(--text);
+  border: 2px solid var(--input-border);
+  border-radius: 6px;
+  outline: none;
+  transition: border-color 0.25s, background 0.4s, color 0.4s;
+}
+
+input:focus,
+select:focus {
+  border-color: var(--input-focus);
+}
+
+
+/* ──────────────────────────────────────────────────────────
+   PASO 3 – Mensajes de error (validación HTML)
+
+   Funcionamiento:
+   · Por defecto, .error-msg está oculto (display: none).
+   · Cuando el input fue tocado (:not(:placeholder-shown))
+     Y su valor es inválido (:invalid), mostramos el mensaje.
+   · La pseudo-clase :placeholder-shown sirve para saber
+     si el campo tiene texto escrito o no.
+────────────────────────────────────────────────────────── */
+.error-msg {
+  display: none;                  /* oculto por defecto */
+  font-size: 0.78rem;
+  color: var(--error-color);
+  margin-top: 2px;
+  transition: color 0.4s;
+}
+
+/*
+  Mostramos el mensaje de error solo cuando:
+  · El input es :invalid  (falla alguna validación HTML)
+  · Y NO está mostrando el placeholder (el usuario ya escribió algo
+    o intentó enviar el formulario)
+*/
+input:not(:placeholder-shown):invalid ~ .error-msg,
+select:invalid ~ .error-msg {
+  display: block;
+}
+
+/*
+  Borde rojo cuando el campo es inválido y fue tocado.
+*/
+input:not(:placeholder-shown):invalid,
+select:invalid {
+  border-color: var(--error-color);
+}
+
+/*
+  Borde verde cuando el campo es válido y fue completado.
+*/
+input:not(:placeholder-shown):valid,
+select:valid {
+  border-color: #48bb78;
+}
+
+
+/* ──────────────────────────────────────────────────────────
+   DIVISOR
+────────────────────────────────────────────────────────── */
+.divider {
+  height: 1px;
+  background: var(--input-border);
+  margin: 20px 0 24px;
+  transition: background 0.4s;
+}
+
+
+/* ──────────────────────────────────────────────────────────
+   BOTONES
+────────────────────────────────────────────────────────── */
+.btn-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* Botón Enviar */
+.btn-send {
+  flex: 1 1 130px;
+  padding: 11px 20px;
+  background: var(--btn-send-bg);
+  color: var(--btn-send-txt);
+  font-size: 0.95rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: opacity 0.2s, background 0.4s, color 0.4s;
+}
+
+.btn-send:hover {
+  opacity: 0.85;
+}
+
+/* Botones de estilo (son <label> que activan checkboxes) */
+.btn-style {
+  flex: 1 1 130px;
+  display: inline-block;
+  padding: 11px 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-align: center;
+  border-radius: 6px;
+  cursor: pointer;
+  border: 2px solid var(--btn-style-border);
+  color: var(--btn-style-txt);
+  background: var(--btn-style-bg);
+  transition: background 0.3s, color 0.3s, border-color 0.3s;
+  user-select: none;    /* evita que el texto se seleccione al hacer clic */
+}
+
+.btn-style:hover {
+  border-color: var(--input-focus);
+}
+
+
+/* ──────────────────────────────────────────────────────────
+   NOTA AL PIE
+────────────────────────────────────────────────────────── */
+.note {
+  font-size: 0.78rem;
+  color: var(--label-color);
+  opacity: 0.6;
+  text-align: center;
+  transition: color 0.4s;
+}
