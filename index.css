@@ -73,51 +73,10 @@
   --font-size-base: 1rem;
 }
 
-/* Reemplazo de checkboxes por radio buttons */
+/* Ocultar los checkboxes del hack — son funcionales pero invisibles */
 #toggle-contraste,
 #toggle-normal {
   display: none;
-}
-
-/* Estilos para los radio buttons */
-input[type="radio"] {
-  display: none;
-}
-
-input[type="radio"]:checked ~ .page-wrapper {
-  --bg:             #000000;
-  --card-bg:        #1a1a2e;
-  --text:           #f5f5f5;
-  --label-color:    #ffffff;
-  --input-bg:       #0f0f1a;
-  --input-border:   #ffcc00;
-  --input-focus:    #ffcc00;
-  --btn-send-bg:    #ffcc00;
-  --btn-send-txt:   #000000;
-  --btn-style-bg:   #222244;
-  --btn-style-txt:  #ffcc00;
-  --btn-style-border: #ffcc00;
-  --error-color:    #ff6b6b;
-  --shadow:         0 4px 32px rgba(0, 0, 0, 0.80);
-  --font-size-base: 1.1rem;
-}
-
-input[type="radio"]:not(:checked) ~ .page-wrapper {
-  --bg:             #f0f4f8;
-  --card-bg:        #ffffff;
-  --text:           #1a202c;
-  --label-color:    #2d3748;
-  --input-bg:       #ffffff;
-  --input-border:   #cbd5e0;
-  --input-focus:    #4299e1;
-  --btn-send-bg:    #3182ce;
-  --btn-send-txt:   #ffffff;
-  --btn-style-bg:   #edf2f7;
-  --btn-style-txt:  #2d3748;
-  --btn-style-border: #cbd5e0;
-  --error-color:    #e53e3e;
-  --shadow:         0 4px 24px rgba(0, 0, 0, 0.10);
-  --font-size-base: 1rem;
 }
 
 
