@@ -1,0 +1,23 @@
+# Archivos del Sistema Operativo
+.DS_Store
+Thumbs.db
+*.log
+
+# IDEs
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Dependencias (si usas npm en el futuro)
+node_modules/
+package-lock.json
+
+# Archivos temporales
+*.tmp
+*.bak
+~$*
+
+# Archivos de configuración local
+.env
+.env.local
