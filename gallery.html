@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galería - Our Blooms®</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">
+                <span class="logo-text">Our Blooms®</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="gallery.html">Galería</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">Acerca de</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contacto</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- PÁGINA DE GALERÍA -->
+    <div class="container py-5">
+        <h1 class="section-title text-center mb-5">GALERÍA</h1>
+
+        <!-- CATEGORÍA 1: ARREGLOS ESTACIONALES -->
+        <section class="category-section mb-5">
+            <h2 class="category-title mb-4">Arreglos Estacionales</h2>
+            <div class="row g-4">
+                <!-- Producto 1 -->
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="product-card-large">
+                        <img src="images/dawn-bloom.jpg" 
+                             alt="Flor del Amanecer" class="img-fluid rounded-4 w-100">
+                        <div class="product-info mt-3">
+                            <h4>Flor del Amanecer</h4>
+                            <p class="text-muted">$55/Ramo</p>
+                            <p class="product-description">Hermosas flores amarillas que traen calidez y alegría a cualquier espacio. Perfectas para iluminar tu día.</p>
+                            <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#productModal"
+                                    onclick="loadProduct('Flor del Amanecer', 55, 'images/dawn-bloom.jpg')">
+                                Ver Detalles
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Producto 2 -->
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="product-card-large">
+                        <img src="images/solstice-stems.jpg" 
+                             alt="Tallos del solsticio" class="img-fluid rounded-4 w-100">
+                        <div class="product-info mt-3">
+                            <h4>Tallos del solsticio</h4>
+                            <p class="text-muted">$30/Ramo</p>
+                            <p class="product-description">Arreglos vibrantes con múltiples flores para celebrar los momentos especiales de tu vida.</p>
+                            <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#productModal"
+                                    onclick="loadProduct('Tallos del solsticio', 30, 'images/solstice-stems.jpg')">
+                                Ver Detalles
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Producto 3 -->
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="product-card-large">
+                        <img src="images/whisper-greens.jpg" 
+                             alt="Verdes susurrantes" class="img-fluid rounded-4 w-100">
+                        <div class="product-info mt-3">
+                            <h4>Verdes susurrantes</h4>
+                            <p class="text-muted">$20/Ramo</p>
+                            <p class="product-description">Follajes delicados que añaden textura y elegancia a cualquier arreglo floral.</p>
+                            <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#productModal"
+                                    onclick="loadProduct('Verdes susurrantes', 20, 'images/whisper-greens.jpg')">
+                                Ver Detalles
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CATEGORÍA 2: ARREGLOS ESPECIALES -->
+        <section class="category-section mb-5">
+            <h2 class="category-title mb-4">Arreglos Especiales</h2>
+            <div class="row g-4">
+                <!-- Producto 4 -->
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="product-card-large">
+                        <img src="images/clarity-petals.jpg" 
+                             alt="Pétalos de Claridad" class="img-fluid rounded-4 w-100">
+                        <div class="product-info mt-3">
+                            <h4>Pétalos de Claridad</h4>
+                            <p class="text-muted">$55/Ramo</p>
+                            <p class="product-description">Rosas rosadas con una elegancia incomparable, ideales para ocasiones románticas y especiales.</p>
+                            <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#productModal"
+                                    onclick="loadProduct('Pétalos de Claridad', 55, 'images/clarity-petals.jpg')">
+                                Ver Detalles
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Producto 5 -->
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="product-card-large">
+                        <img src="images/river-stone.jpg" 
+                             alt="Piedra de río" class="img-fluid rounded-4 w-100">
+                        <div class="product-info mt-3">
+                            <h4>Piedra de río</h4>
+                            <p class="text-muted">$30/Ramo</p>
+                            <p class="product-description">Peonías en tonos rosas que evocan elegancia y romanticismo en su máxima expresión.</p>
+                            <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#productModal"
+                                    onclick="loadProduct('Piedra de río', 30, 'images/river-stone.jpg')">
+                                Ver Detalles
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Producto 6 -->
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="product-card-large">
+                        <img src="images/moonlit-meadow.jpg" 
+                             alt="Pradera iluminada por la luna" class="img-fluid rounded-4 w-100">
+                        <div class="product-info mt-3">
+                            <h4>Pradera iluminada por la luna</h4>
+                            <p class="text-muted">$20/Ramo</p>
+                            <p class="product-description">Orquídeas moradas que traen sofisticación y misterio a tu hogar o evento.</p>
+                            <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#productModal"
+                                    onclick="loadProduct('Pradera iluminada por la luna', 20, 'images/moonlit-meadow.jpg')">
+                                Ver Detalles
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- MODAL DE PRODUCTO -->
+    <div class="modal fade" id="productModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="productName"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <img id="productImage" src="" alt="" class="img-fluid rounded-3">
+                        </div>
+                        <div class="col-md-6">
+                            <p class="text-muted">Arreglos Florales Premium</p>
+                            <h3 id="productPrice"></h3>
+                            <p>Flores naturales de la más alta calidad, cuidadosamente seleccionadas para brindar belleza y elegancia a tu espacio.</p>
+                            <ul class="list-unstyled">
+                                <li><i class="fas fa-check text-success me-2"></i> Flores frescas garantizadas</li>
+                                <li><i class="fas fa-check text-success me-2"></i> Entrega rápida</li>
+                                <li><i class="fas fa-check text-success me-2"></i> Arreglos personalizados</li>
+                                <li><i class="fas fa-check text-success me-2"></i> Disponible en 2 o 5 días</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary">Agregar al Carrito</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer bg-dark text-white py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h5>Our Blooms®</h5>
+                    <p class="text-muted">Desde humildes comienzos, Bloom&Co ha crecido hasta convertirse en un destino local querido.</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5>Enlaces</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="gallery.html" class="text-muted text-decoration-none">Galería</a></li>
+                        <li><a href="about.html" class="text-muted text-decoration-none">Acerca de</a></li>
+                        <li><a href="contact.html" class="text-muted text-decoration-none">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5>Síguenos</h5>
+                    <div class="social-links">
+                        <a href="#" class="text-muted me-3"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-muted me-3"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-muted me-3"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="bg-secondary">
+            <div class="text-center text-muted">
+                <p>&copy; 2026 Our Blooms®. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>

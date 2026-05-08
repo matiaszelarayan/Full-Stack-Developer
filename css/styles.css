@@ -1,303 +1,679 @@
-/* ════════════════════════════════════════════════════════════
-   index.css  –  Formulario de Datos Personales
-   Cubre: Paso 1 (base) · Paso 2 (alto contraste) · Paso 3 (validación) · Paso 4 (integración)
-   ════════════════════════════════════════════════════════════ */
-
-
-/* ──────────────────────────────────────────────────────────
-   PASO 1 – Variables del tema CLARO (predeterminado)
-   Todos los colores se definen acá como variables CSS.
-   Cambiar el tema = redefinir estas variables.
-────────────────────────────────────────────────────────── */
+/* ========================================
+   ESTILOS GLOBALES
+   ======================================== */
 :root {
-  --bg:             #f0f4f8;
-  --card-bg:        #ffffff;
-  --text:           #1a202c;
-  --label-color:    #2d3748;
-  --input-bg:       #ffffff;
-  --input-border:   #cbd5e0;
-  --input-focus:    #4299e1;
-  --btn-send-bg:    #3182ce;
-  --btn-send-txt:   #ffffff;
-  --btn-style-bg:   #edf2f7;
-  --btn-style-txt:  #2d3748;
-  --btn-style-border: #cbd5e0;
-  --error-color:    #e53e3e;
-  --shadow:         0 4px 24px rgba(0, 0, 0, 0.10);
-  --radius:         10px;
-  --font-size-base: 1rem;
+    --primary-color: #C97B84;
+    --secondary-color: #FFC107;
+    --dark-color: #1a1a1a;
+    --light-color: #f8f9fa;
+    --text-color: #333;
+    --text-muted: #6c757d;
 }
 
-
-/* ──────────────────────────────────────────────────────────
-   PASO 2 – Tema ALTO CONTRASTE
-   Se activa cuando el checkbox #toggle-contraste está marcado.
-   El selector "~" significa "hermano siguiente en el DOM".
-   Como los checkboxes están antes de .page-wrapper en el HTML,
-   podemos seleccionarlo con ~.
-────────────────────────────────────────────────────────── */
-#toggle-contraste:checked ~ .page-wrapper {
-  --bg:             #000000;
-  --card-bg:        #1a1a2e;
-  --text:           #f5f5f5;
-  --label-color:    #ffffff;
-  --input-bg:       #0f0f1a;
-  --input-border:   #ffcc00;
-  --input-focus:    #ffcc00;
-  --btn-send-bg:    #ffcc00;
-  --btn-send-txt:   #000000;
-  --btn-style-bg:   #222244;
-  --btn-style-txt:  #ffcc00;
-  --btn-style-border: #ffcc00;
-  --error-color:    #ff6b6b;
-  --shadow:         0 4px 32px rgba(0, 0, 0, 0.80);
-  --font-size-base: 1.1rem;   /* letra más grande para mejor legibilidad */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-/* Cuando se activa #toggle-normal → volvemos al tema claro */
-#toggle-normal:checked ~ .page-wrapper {
-  --bg:             #f0f4f8;
-  --card-bg:        #ffffff;
-  --text:           #1a202c;
-  --label-color:    #2d3748;
-  --input-bg:       #ffffff;
-  --input-border:   #cbd5e0;
-  --input-focus:    #4299e1;
-  --btn-send-bg:    #3182ce;
-  --btn-send-txt:   #ffffff;
-  --btn-style-bg:   #edf2f7;
-  --btn-style-txt:  #2d3748;
-  --btn-style-border: #cbd5e0;
-  --error-color:    #e53e3e;
-  --shadow:         0 4px 24px rgba(0, 0, 0, 0.10);
-  --font-size-base: 1rem;
-}
-
-/* Ocultar los checkboxes del hack — son funcionales pero invisibles */
-#toggle-contraste,
-#toggle-normal {
-  display: none;
-}
-
-
-/* ──────────────────────────────────────────────────────────
-   RESET BÁSICO
-────────────────────────────────────────────────────────── */
-*, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-
-/* ──────────────────────────────────────────────────────────
-   BODY & LAYOUT
-────────────────────────────────────────────────────────── */
 body {
-  font-family: Arial, sans-serif;
-  font-size: var(--font-size-base);
-  background-color: var(--bg);
-  color: var(--text);
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  padding: 40px 16px 60px;
-  transition: background-color 0.4s, color 0.4s;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--text-color);
+    line-height: 1.6;
+    background-color: #fff;
 }
 
-.page-wrapper {
-  width: 100%;
-  max-width: 560px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 24px;
-  /* La transición acá hace que todos los hijos animados se vean suaves */
-  transition: all 0.4s;
+/* ========================================
+   NAVBAR
+   ======================================== */
+.navbar {
+    border-bottom: 1px solid #e9ecef;
 }
 
-
-/* ──────────────────────────────────────────────────────────
-   TÍTULO
-────────────────────────────────────────────────────────── */
-.page-title {
-  font-size: 1.9rem;
-  font-weight: 700;
-  color: var(--text);
-  text-align: center;
-  transition: color 0.4s;
+.logo-text {
+    font-size: 1.5rem;
+    color: var(--primary-color) !important;
+    font-weight: 700;
+    letter-spacing: 0.5px;
 }
 
-
-/* ──────────────────────────────────────────────────────────
-   TARJETA (card)
-────────────────────────────────────────────────────────── */
-.card {
-  width: 100%;
-  background: var(--card-bg);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  padding: 36px 32px;
-  transition: background 0.4s, box-shadow 0.4s;
+.nav-link {
+    color: var(--text-color) !important;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    margin-left: 1rem;
 }
 
-
-/* ──────────────────────────────────────────────────────────
-   CAMPOS DEL FORMULARIO
-────────────────────────────────────────────────────────── */
-.field-group {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  margin-bottom: 1.4rem;
+.nav-link:hover,
+.nav-link.active {
+    color: var(--primary-color) !important;
 }
 
-label {
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--label-color);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  transition: color 0.4s;
+/* ========================================
+   HERO SECTION
+   ======================================== */
+.hero-section {
+    background: linear-gradient(135deg, #fde8e8 0%, #f5f5f5 100%);
+    padding: 2rem 0;
 }
 
-input[type="text"],
-input[type="email"],
-input[type="date"],
-select {
-  width: 100%;
-  padding: 10px 14px;
-  font-size: var(--font-size-base);
-  font-family: inherit;
-  background: var(--input-bg);
-  color: var(--text);
-  border: 2px solid var(--input-border);
-  border-radius: 6px;
-  outline: none;
-  transition: border-color 0.25s, background 0.4s, color 0.4s;
+.hero-image {
+    position: relative;
 }
 
-input:focus,
-select:focus {
-  border-color: var(--input-focus);
+.hero-image img {
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
 }
 
-
-/* ──────────────────────────────────────────────────────────
-   PASO 3 – Mensajes de error (validación HTML)
-
-   Funcionamiento:
-   · Por defecto, .error-msg está oculto (display: none).
-   · Cuando el input fue tocado (:not(:placeholder-shown))
-     Y su valor es inválido (:invalid), mostramos el mensaje.
-   · La pseudo-clase :placeholder-shown sirve para saber
-     si el campo tiene texto escrito o no.
-────────────────────────────────────────────────────────── */
-.error-msg {
-  display: none;                  /* oculto por defecto */
-  font-size: 0.78rem;
-  color: var(--error-color);
-  margin-top: 2px;
-  transition: color 0.4s;
+.hero-image:hover img {
+    transform: scale(1.02);
 }
 
-/*
-  Mostramos el mensaje de error solo cuando:
-  · El input es :invalid  (falla alguna validación HTML)
-  · Y NO está mostrando el placeholder (el usuario ya escribió algo
-    o intentó enviar el formulario)
-*/
-input:not(:placeholder-shown):invalid ~ .error-msg,
-select:invalid ~ .error-msg {
-  display: block;
+.promo-badge {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    background: var(--secondary-color);
+    padding: 1rem;
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
 }
 
-/*
-  Borde rojo cuando el campo es inválido y fue tocado.
-*/
-input:not(:placeholder-shown):invalid,
-select:invalid {
-  border-color: var(--error-color);
+.promo-badge .badge-text {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--text-color);
 }
 
-/*
-  Borde verde cuando el campo es válido y fue completado.
-*/
-input:not(:placeholder-shown):valid,
-select:valid {
-  border-color: #48bb78;
+.promo-badge p {
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin: 0;
+    color: var(--text-color);
 }
 
-
-/* ──────────────────────────────────────────────────────────
-   DIVISOR
-────────────────────────────────────────────────────────── */
-.divider {
-  height: 1px;
-  background: var(--input-border);
-  margin: 20px 0 24px;
-  transition: background 0.4s;
-}
-
-
-/* ──────────────────────────────────────────────────────────
+/* ========================================
    BOTONES
-────────────────────────────────────────────────────────── */
-.btn-row {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
+   ======================================== */
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: white;
+    font-weight: 600;
+    transition: all 0.3s ease;
 }
 
-/* Botón Enviar */
-.btn-send {
-  flex: 1 1 130px;
-  padding: 11px 20px;
-  background: var(--btn-send-bg);
-  color: var(--btn-send-txt);
-  font-size: 0.95rem;
-  font-weight: 700;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: opacity 0.2s, background 0.4s, color 0.4s;
+.btn-primary:hover,
+.btn-primary:focus {
+    background-color: #b5697e;
+    border-color: #b5697e;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(201, 123, 132, 0.3);
 }
 
-.btn-send:hover {
-  opacity: 0.85;
+.btn-outline-primary {
+    color: var(--primary-color);
+    border-color: var(--primary-color);
 }
 
-/* Botones de estilo (son <label> que activan checkboxes) */
-.btn-style {
-  flex: 1 1 130px;
-  display: inline-block;
-  padding: 11px 20px;
-  font-size: 0.9rem;
-  font-weight: 600;
-  text-align: center;
-  border-radius: 6px;
-  cursor: pointer;
-  border: 2px solid var(--btn-style-border);
-  color: var(--btn-style-txt);
-  background: var(--btn-style-bg);
-  transition: background 0.3s, color 0.3s, border-color 0.3s;
-  user-select: none;    /* evita que el texto se seleccione al hacer clic */
+.btn-outline-primary:hover {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: white;
 }
 
-.btn-style:hover {
-  border-color: var(--input-focus);
+.btn-warning {
+    background-color: var(--secondary-color) !important;
+    border-color: var(--secondary-color) !important;
+    color: var(--text-color) !important;
+    font-weight: 600;
 }
 
+.btn-warning:hover {
+    background-color: #ffc107 !important;
+    filter: brightness(0.9);
+}
 
-/* ──────────────────────────────────────────────────────────
-   NOTA AL PIE
-────────────────────────────────────────────────────────── */
-.note {
-  font-size: 0.78rem;
-  color: var(--label-color);
-  opacity: 0.6;
-  text-align: center;
-  transition: color 0.4s;
+/* ========================================
+   SECCIONES
+   ======================================== */
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--text-color);
+    letter-spacing: -0.5px;
+    margin-bottom: 1rem;
+}
+
+.category-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-color);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* ========================================
+   TARJETAS DE PRODUCTOS
+   ======================================== */
+.product-card {
+    background: white;
+    border-radius: 1rem;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    border: 1px solid #e9ecef;
+}
+
+.product-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+.product-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.product-card:hover img {
+    transform: scale(1.05);
+}
+
+.product-card h5 {
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+}
+
+.product-card p {
+    font-size: 0.95rem;
+}
+
+/* ========================================
+   TARJETAS DE PRODUCTOS GRANDES
+   ======================================== */
+.product-card-large {
+    background: white;
+    border-radius: 1.5rem;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.product-card-large:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+}
+
+.product-card-large img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.product-card-large:hover img {
+    transform: scale(1.05);
+}
+
+.product-info h4 {
+    font-weight: 700;
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+}
+
+.product-description {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin: 1rem 0;
+}
+
+/* ========================================
+   CARRUSEL
+   ======================================== */
+.carousel-section {
+    padding: 5rem 0;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    width: auto;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ========================================
+   MODAL
+   ======================================== */
+.modal-content {
+    border-radius: 1rem;
+    border: 1px solid #e9ecef;
+}
+
+.modal-header {
+    background-color: var(--light-color);
+    border-bottom: 1px solid #e9ecef;
+}
+
+.modal-title {
+    font-weight: 700;
+    color: var(--text-color);
+}
+
+/* ========================================
+   PÁGINA ABOUT
+   ======================================== */
+.about-section {
+    padding: 3rem 0;
+}
+
+.owner-section {
+    text-align: center;
+}
+
+.value-card {
+    background: white;
+    border-radius: 1rem;
+    border: 1px solid #e9ecef;
+    transition: all 0.3s ease;
+}
+
+.value-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border-color: var(--primary-color);
+}
+
+.value-icon {
+    transition: transform 0.3s ease;
+}
+
+.value-card:hover .value-icon {
+    transform: scale(1.1);
+}
+
+/* ========================================
+   PÁGINA CONTACT
+   ======================================== */
+.contact-info-card {
+    background: white;
+    transition: all 0.3s ease;
+}
+
+.contact-info-card:hover {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.contact-item {
+    padding-bottom: 1.5rem;
+}
+
+.contact-item:last-child {
+    padding-bottom: 0;
+}
+
+.contact-form-wrapper {
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+.form-control,
+.form-select {
+    border: 2px solid #e9ecef;
+    border-radius: 0.75rem;
+    padding: 0.75rem 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(201, 123, 132, 0.25);
+}
+
+.invalid-feedback {
+    color: #dc3545;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+}
+
+.map-container {
+    width: 100%;
+    height: 400px;
+}
+
+/* ========================================
+   FOOTER
+   ======================================== */
+.footer {
+    background-color: var(--dark-color);
+    color: white;
+    margin-top: 5rem;
+}
+
+.footer a {
+    transition: color 0.3s ease;
+}
+
+.footer a:hover {
+    color: var(--primary-color) !important;
+}
+
+.footer h5 {
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+}
+
+.social-links a {
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+    transform: scale(1.2);
+    color: var(--primary-color) !important;
+}
+
+/* ========================================
+   RESPONSIVE DESIGN
+   ======================================== */
+
+/* Tablets (768px - 1023px) */
+@media (max-width: 1023px) {
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .category-title {
+        font-size: 1.5rem;
+    }
+
+    .hero-section {
+        padding: 1rem 0;
+    }
+
+    .promo-badge {
+        width: 100px;
+        height: 100px;
+        bottom: 10px;
+        left: 10px;
+    }
+
+    .product-card-large img {
+        height: 300px;
+    }
+
+    .map-container {
+        height: 300px;
+    }
+}
+
+/* Mobile (menos de 768px) */
+@media (max-width: 767px) {
+    .navbar {
+        padding: 0.5rem 0;
+    }
+
+    .logo-text {
+        font-size: 1.2rem;
+    }
+
+    .nav-link {
+        margin-left: 0;
+        padding: 0.5rem 0 !important;
+    }
+
+    .section-title {
+        font-size: 1.75rem;
+        margin-bottom: 2rem;
+    }
+
+    .category-title {
+        font-size: 1.25rem;
+    }
+
+    .display-3 {
+        font-size: 2rem;
+    }
+
+    .lead {
+        font-size: 1rem;
+    }
+
+    .hero-section {
+        padding: 1rem 0;
+    }
+
+    .hero-image {
+        margin-top: 2rem;
+    }
+
+    .promo-badge {
+        width: 80px;
+        height: 80px;
+        bottom: 10px;
+        left: 10px;
+    }
+
+    .promo-badge p {
+        font-size: 0.75rem;
+    }
+
+    .product-card {
+        margin-bottom: 1.5rem;
+    }
+
+    .product-card img {
+        height: 200px;
+    }
+
+    .product-card-large img {
+        height: 250px;
+    }
+
+    .btn-lg {
+        padding: 0.75rem 1.5rem;
+        font-size: 0.95rem;
+    }
+
+    .carousel-control-prev,
+    .carousel-control-next {
+        width: 40px;
+        height: 40px;
+    }
+
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+        width: 40px;
+        height: 40px;
+    }
+
+    .row.g-4 > .col-sm-12 {
+        margin-bottom: 1.5rem;
+    }
+
+    .contact-form-wrapper {
+        padding: 2rem 1.5rem !important;
+    }
+
+    .map-container {
+        height: 250px;
+    }
+
+    .value-card {
+        margin-bottom: 1.5rem;
+    }
+
+    .d-grid.gap-2.d-sm-flex {
+        flex-direction: column;
+    }
+
+    .flex-sm-grow-1 {
+        flex: 1;
+        margin-bottom: 0.5rem;
+    }
+
+    .flex-sm-grow-1:last-child {
+        margin-bottom: 0;
+    }
+
+    /* Hero buttons en mobile */
+    .hero-section .btn {
+        display: block;
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+
+    /* Min-height para hero en mobile */
+    .min-vh-100 {
+        min-height: auto !important;
+        padding: 2rem 0;
+    }
+}
+
+/* Extra pequeño (menos de 576px) */
+@media (max-width: 575px) {
+    body {
+        font-size: 0.95rem;
+    }
+
+    .display-3 {
+        font-size: 1.5rem;
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+    }
+
+    .category-title {
+        font-size: 1.1rem;
+    }
+
+    .container {
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+    }
+
+    .promo-badge {
+        width: 70px;
+        height: 70px;
+        font-size: 0.8rem;
+    }
+
+    .btn {
+        font-size: 0.9rem;
+        padding: 0.5rem 1rem;
+    }
+
+    .btn-lg {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+    }
+
+    .footer .row > div {
+        margin-bottom: 2rem;
+    }
+
+    .nav-item:last-child {
+        border-bottom: none;
+    }
+}
+
+/* ========================================
+   ANIMACIONES
+   ======================================== */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInFromLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.product-card,
+.product-card-large,
+.value-card {
+    animation: fadeInUp 0.5s ease forwards;
+}
+
+/* ========================================
+   UTILIDADES
+   ======================================== */
+.text-primary {
+    color: var(--primary-color) !important;
+}
+
+.bg-primary {
+    background-color: var(--primary-color) !important;
+}
+
+.border-primary {
+    border-color: var(--primary-color) !important;
+}
+
+.text-secondary {
+    color: var(--text-muted) !important;
+}
+
+.rounded-4 {
+    border-radius: 1.5rem;
+}
+
+.shadow-sm {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05) !important;
+}
+
+.transition-all {
+    transition: all 0.3s ease;
+}
+
+/* Scrollbar personalizado */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #b5697e;
 }
