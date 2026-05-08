@@ -366,8 +366,31 @@ body {
    ======================================== */
 .footer {
     background-color: var(--dark-color);
+    background-image: url('../images/contact-banner.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
     color: white;
     margin-top: 5rem;
+    position: relative;
+}
+
+/* Agregar overlay oscuro para que se vea el texto */
+.footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(26, 26, 26, 0.85);
+    z-index: 1;
+}
+
+/* Hacer que el contenido esté encima del overlay */
+.footer .container {
+    position: relative;
+    z-index: 2;
 }
 
 .footer a {
